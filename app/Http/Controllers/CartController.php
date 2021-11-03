@@ -88,12 +88,12 @@ function placeOrder(Request $req){
 
         // delete cart
         Cart::where('user_id',$user_id)->delete();
-        // find the product
-        $updateProduct = Book::find($cart['product_id']);
-        // update product storage
-        $updateProduct->sold++;
-        $updateProduct->quantity--;
-        $updateProduct->save();
+        // // find the product
+        // $updateProduct = Book::find($cart['product_id']);
+        // // update product storage
+        // $updateProduct->sold++;
+        // $updateProduct->quantity--;
+        // $updateProduct->save();
 
     }
 
