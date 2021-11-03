@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +16,6 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('book/home');
-});
 Route::get('/login', function () {
     return view('auth/login');
 });
@@ -34,6 +33,22 @@ Route::get('/insertBook', function () {
 });
 Route::post('/insertBook',[BookController::class,'insertBook']);
 
+Route::get('/',[BookController::class,'showBooks']);
 Route::get('/home',[BookController::class,'showBooks']);
 Route::get('/search',[BookController::class,'search']);
 Route::get('detail/{id}',[BookController::class,'detail']);
+
+
+
+// cart
+Route::post('/cart',[CartController::class,'addToCart']);
+
+Route::get('/cartlist',[CartController::class,'cartlist']);
+
+Route::get('removeCart/{id}',[CartController::class,'removeCart']);
+
+Route::get('/orderNow',[CartController::class,'orderNow']);
+
+Route::post('/placeOrder',[CartController::class,'placeOrder']);
+
+Route::get('/orderlist',[CartController::class,'orderlist']);

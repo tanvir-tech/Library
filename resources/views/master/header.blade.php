@@ -2,9 +2,9 @@
 use App\Http\Controllers\CartController;
 // use Illuminate\Http\Request;
 $totalCartItem = 0;
-// if(Session::has('user')){
-//   $totalCartItem = CartController::cart_Count();
-// }
+if(Session::has('user')){
+  $totalCartItem = CartController::cart_Count();
+}
 
 ?>
 {{-- nav bar  --}}

@@ -10,8 +10,6 @@
 
         <div class="col-lg-6">
 
-
-
             <h2 class="text-primary">{{$item['name']}}</h2>
             <h5 class="text-danger">{{$item['price']}} BDT</h5>
             <p>Author : {{$item['description']}}</p>
