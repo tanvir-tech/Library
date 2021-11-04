@@ -1,5 +1,12 @@
 @extends('master/master')
 @section("content")
+<?php
+use App\Http\Controllers\CartController;
+
+$available = DB::table('books')->where('id', $item['id'])->first();
+
+
+?>
 
 
     <div class="row p-5">
@@ -18,7 +25,15 @@
 <form action="/cart" method="POST">
             @csrf
             <input type="hidden" name="product_id" value={{$item['id']}}>
-            <button class="btn btn-warning" type="submit">Add to CART</button>
+
+            @if ($available->quantity != 0)
+                <button class="btn btn-warning" type="submit">Add to CART</button>
+            @else
+                <h3 class="text-danger">Not available</h3>
+
+                {{-- {{$available->quantity}} --}}
+            @endif
+
             {{-- <a href="cart/{{$item['id']}}" class="btn btn-warning btn-sm">Add to CART</a> --}}
 </form><br><br>
 

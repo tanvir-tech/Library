@@ -9,7 +9,7 @@
         <form action="insertBook" method="POST" enctype="multipart/form-data">
           @csrf
         <br>
-        <h3 class="text-center">New product</h3>
+        <h3 class="text-center">New Book</h3>
         <br>
         <input class="form-control mr-sm-2" type="text" placeholder="Book name" name="productName">
         <br>
@@ -34,6 +34,8 @@
             {{-- product Image  --}}
             <label for="productImage">Select an image:</label>
             <input type="file" id="productImage" name="productImage">
+        <br>
+        <input class="form-control col-lg-4" type="number" placeholder="quantity" name="quantity">
         <br>
         <button class="btn btn-danger" type="submit">Submit</button>
         <br><br>

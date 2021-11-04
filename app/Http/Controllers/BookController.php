@@ -16,7 +16,8 @@ class BookController extends Controller
             'description'=>'required',
             'category'=>'required',
             'price'=>'required',
-            'productImage'=>'required|file|mimes:jpg,jpeg,bmp,png'
+            'productImage'=>'required|file|mimes:jpg,jpeg,bmp,png',
+            'quantity'=>'required'
         ]);
 
         // file
@@ -31,6 +32,8 @@ class BookController extends Controller
         $book->category = $req->category;
         $book->price = $req->price;
         $book->gallery = $new_productImageName;
+        $book->quantity = $req->quantity;
+        $book->sold = 0;
         $book->save();
         return redirect('/insertBook');
 

@@ -14,7 +14,16 @@ class CartController extends Controller
 
 function addToCart(Request $req){
 
+
+
     if($req->session()->has('user')){
+
+        // $available = DB::table('books')->where('id', $req->product_id)->first();
+        // // return $available->quantity ;
+        // if($available->quantity == 0){
+        //     return "Not available";
+        // }
+
         $cart = new Cart;
         $cart->user_id = session()->get('user')['id'];
         $cart->product_id = $req->product_id;
@@ -76,6 +85,19 @@ function placeOrder(Request $req){
     $allcart = Cart::where('user_id',$user_id)->get();
 
     foreach($allcart as $cart){
+
+        //$available = DB::table('books')->select('quantity')->where('id', $cart['user_id'])->first();
+
+
+            // find the product
+            $updateProduct = Book::find($cart['product_id']);
+            // update product storage
+            $updateProduct->sold++;
+            $updateProduct->quantity--;
+            $updateProduct->save();
+
+
+
         $order = new Order;
         $order->product_id = $cart['product_id'];
         $order->user_id = $cart['user_id'];
@@ -88,12 +110,10 @@ function placeOrder(Request $req){
 
         // delete cart
         Cart::where('user_id',$user_id)->delete();
-        // // find the product
-        // $updateProduct = Book::find($cart['product_id']);
-        // // update product storage
-        // $updateProduct->sold++;
-        // $updateProduct->quantity--;
-        // $updateProduct->save();
+
+
+
+
 
     }
 
